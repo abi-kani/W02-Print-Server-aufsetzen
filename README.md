@@ -44,6 +44,16 @@ Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werksta
 ## 2.4. Benötigte Hard- und Software
 
    - Hardware (Materialliste, Funktionalitaet)
+     - Raspberry Pi
+     - SD-Karte mit Image
+     - Monitor
+     - Tastatur
+     - Maus
+     - HDMI-Kabel
+     - HDMI-Adapter
+     - LAN-Kabel
+     - Print-Server
+
 
    - Software (Anforderungen, Firmware, OS-Image, ergaenzende SW-Packages, Ab-
 
