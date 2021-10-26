@@ -1,36 +1,27 @@
-# W02-Print-Server-aufsetzen
-# 1. Werkstattauftrag W02 Print-Server
+# 1. W02-Print-Server-aufsetzen
+# 2. Werkstattauftrag W02 Print-Server
 
 
 
 
-## 1.1. Inhaltsverzeichnis:
-
-- [1. Werkstattauftrag W07 Webmin](#1-werkstattauftrag-w07-webmin)
-
-  - [1.1. Inhaltsverzeichnis:](#11-inhaltsverzeichnis)
-
-  - [1.2. Autoren & Version](#12-autoren--version)
-
-  - [1.3. Einführung](#13-einführung)
-
-    - [Beschreibung](#beschreibung)
-
-  - [1.4. Benötigte Hard- und Software](#14-benötigte-hard--und-software)
-
-  - [1.5. Installationsanleitung](#15-installationsanleitung)
-
-  - [1.6. Qualitätskontrolle (Pruefen der Funktionalität mit Ablauf von Kommandos und entsprechenden Outputs)](#16-qualitätskontrolle-pruefen-der-funktionalität-mit-ablauf-von-kommandos-und-entsprechenden-outputs)
-
-  - [1.7. Error-Handling](#17-error-handling)
-
-  - [1.8. Quellen](#18-quellen)
-
-    - [1.8.1. OpenSource Lizenz](#181-opensource-lizenz)
+## 2.1. Inhaltsverzeichnis:
 
 
+- [1. W02-Print-Server-aufsetzen](#1-w02-print-server-aufsetzen)
+- [2. Werkstattauftrag W02 Print-Server](#2-werkstattauftrag-w02-print-server)
+  - [2.1. Inhaltsverzeichnis:](#21-inhaltsverzeichnis)
+  - [2.2. Autoren & Version](#22-autoren--version)
+  - [2.3. Einführung](#23-einführung)
+    - [2.3.1. Beschreibung](#231-beschreibung)
+  - [2.4. Benötigte Hard- und Software](#24-benötigte-hard--und-software)
+  - [2.5. Installationsanleitung](#25-installationsanleitung)
+  - [2.6. Qualitätskontrolle (Pruefen der Funktionalität mit Ablauf von Kommandos und entsprechenden Outputs)](#26-qualitätskontrolle-pruefen-der-funktionalität-mit-ablauf-von-kommandos-und-entsprechenden-outputs)
+  - [2.7. Error-Handling](#27-error-handling)
+  - [2.8. Quellen](#28-quellen)
+    - [2.8.1. OpenSource Lizenz](#281-opensource-lizenz)
 
-## 1.2. Autoren & Version
+
+## 2.2. Autoren & Version
 
 Autoren: Lian Baumann & Abishanth Kanagaratnam <br>
 
@@ -38,9 +29,9 @@ Version: 1.3 <br>
 
 Link: https://github.com/lian-baumann/M306-Services
 
-## 1.3. Einführung 
+## 2.3. Einführung
 
-### Beschreibung
+### 2.3.1. Beschreibung
 
 Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werkstattauftrag. Dazu führen wir den Auftrag von A-Z durch und dokumentieren unsere Resultate in diesem Github repo in einer didaktisch reduzierten Form.
 
@@ -50,7 +41,7 @@ Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werksta
 
 
 
-## 1.4. Benötigte Hard- und Software
+## 2.4. Benötigte Hard- und Software
 
    - Hardware (Materialliste, Funktionalitaet)
 
@@ -60,7 +51,7 @@ Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werksta
 
 
 
-## 1.5. Installationsanleitung
+## 2.5. Installationsanleitung
 
    - Anweisungen verständlich und nachvollziehbar
 
@@ -70,15 +61,15 @@ Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werksta
 
 
 
-## 1.6. Qualitätskontrolle (Pruefen der Funktionalität mit Ablauf von Kommandos und entsprechenden Outputs)
+## 2.6. Qualitätskontrolle (Pruefen der Funktionalität mit Ablauf von Kommandos und entsprechenden Outputs)
 
 
 
-## 1.7. Error-Handling 
+## 2.7. Error-Handling 
 
 
 
-## 1.8. Quellen
+## 2.8. Quellen
 
 Benutzte Anleitung: https://sbcguides.com/install-webmin-on-raspberry-pi/
 
@@ -86,6 +77,6 @@ Benutzte Anleitung: https://sbcguides.com/install-webmin-on-raspberry-pi/
 
 ---
 
-### 1.8.1. OpenSource Lizenz
+### 2.8.1. OpenSource Lizenz
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz</a>.
