@@ -14,6 +14,8 @@
   - [2.3. Einführung](#23-einführung)
     - [2.3.1. Beschreibung](#231-beschreibung)
   - [2.4. Benötigte Hard- und Software](#24-benötigte-hard--und-software)
+    - [Hardware](#hardware)
+    - [Software](#software)
   - [2.5. Installationsanleitung](#25-installationsanleitung)
   - [2.6. Qualitätskontrolle (Pruefen der Funktionalität mit Ablauf von Kommandos und entsprechenden Outputs)](#26-qualitätskontrolle-pruefen-der-funktionalität-mit-ablauf-von-kommandos-und-entsprechenden-outputs)
   - [2.7. Error-Handling](#27-error-handling)
@@ -43,19 +45,22 @@ Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werksta
 
 ## 2.4. Benötigte Hard- und Software
 
-   - Hardware (Materialliste, Funktionalitaet)
-     - Raspberry Pi
-     - SD-Karte mit Image
-     - Monitor
-     - Tastatur
-     - Maus
-     - HDMI-Kabel
-     - HDMI-Adapter
-     - LAN-Kabel
-     - Print-Server
+### Hardware
+ - Raspberry Pi
+ - SD-Karte mit Image
+ - Monitor
+ - Tastatur
+ - Maus
+ - HDMI-Kabel
+ - HDMI-Adapter
+ - LAN-Kabel
+ - Print-Server
 
+### Software
+   - Raspberry OS
+   - CUPS (Druckserver-Software)
+   - CUPS-client
 
-   - Software (Anforderungen, Firmware, OS-Image, ergaenzende SW-Packages, Ab-
 
    hängigkeiten, Funktionalitaet)
 
