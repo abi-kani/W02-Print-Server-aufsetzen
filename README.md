@@ -17,6 +17,8 @@
     - [Hardware](#hardware)
     - [Software](#software)
   - [2.5. Installationsanleitung](#25-installationsanleitung)
+    - [Benutzer zuweisen](#benutzer-zuweisen)
+    - [CUPS konfigurieren](#cups-konfigurieren)
   - [2.6. Qualitätskontrolle (Pruefen der Funktionalität mit Ablauf von Kommandos und entsprechenden Outputs)](#26-qualitätskontrolle-pruefen-der-funktionalität-mit-ablauf-von-kommandos-und-entsprechenden-outputs)
   - [2.7. Error-Handling](#27-error-handling)
   - [2.8. Quellen](#28-quellen)
@@ -85,7 +87,103 @@ CUPS müssen wir auch installieren. CUPS steht für Common Unix Printing System 
 
       sudo apt install cups cups-client
 
-Dazu müssen wir noch die Druckertreiber installieren
+- cups (die Server-Komponente)
+- cups-client (die Client-Komponente, kann auf reinen Clients auch einzeln installiert werden)
+
+Dazu müssen wir noch die Druckertreiber installieren.
+
+      sudo apt-get install hplip printer-driver-hpijs printer-driver-gutenprint
+
+- hplip (für HP-Drucker, egal ob Laser- oder Tintenstrahldrucker; siehe HPLIP)
+- printer-driver-hpijs (wird für hplib benötigt)
+- printer-driver-gutenprint (enthält viele Treiber für sonstige Farb-Tintendrucker)
+
+Jetzt können wir CUPS auch schon starten.
+
+      sudo /etc/init.d/cups start
+
+### Benutzer zuweisen
+
+Falls du einen Benutzer für die Druckerkonfiguration berechtigen möchtest, dann muss er Teil der Gruppe lpadmin sein.
+
+      sudo usermod -aG lpadmin pi
+
+Ebenfalls ist es von Vorteil einen neuen Drucker-Benutzer anzulegen.
+
+      sudo useradd -c Druckuser -M -s /bin/false Drucker
+
+      sudo usermod -aG lpadmin Drucker
+
+      sudo passwd Drucker
+
+Die Option “-M” legt dem Benutzer kein Homeverzeichnis an; die Option “-s /bin/false”
+verhindert das Einloggen auf der Shell, so dass das Passwort nicht sehr stark sein muss. (Gut für die Familie zum Merken) “-c Druckuser” ist einfach nur ein Kommentar.
+
+Jetzt müssen wir überprüfen ob "Drucker" in der Gruppe ist.
+
+      id Drucker
+
+Falls dies der Fall ist, dann haben wir es so weit geschafft. Die Konfiguration von CUPS ist der nächste Schritt.
+
+### CUPS konfigurieren
+
+Die Konfigurationsdatei muss noch bearbeitet werden. Auf diese zugreifen könner wir mit:
+
+      sudo nano /etc/cups/cupsd.conf
+
+Da der Print-Server auch ohne grafische Oberfläche verfügbar sein soll, lassen wir ihn auf allen Netzwerkschnittstellen lauschen. Dafür müssen die "Listen"-Einträge abgeändert werden. 
+Wir entfernen (oder auskommentieren mit #) die Zeile „Listen ...“ nach:
+
+      # Only listen for connections from the local machine.
+      # Listen localhost:631
+
+Und ersetzen durch:
+
+      #Allow remote access
+      Port 631
+
+Das WebInterface sollte auf “Yes” gestellt sein und die Location-Einträge folgendermassen angepasst werden:
+
+      # Web interface setting...
+      WebInterface Yes
+      # Restrict access to the server...
+      <Location />
+        Require user @SYSTEM
+        Order allow,deny
+        Allow @local
+      </Location>
+
+Ohne weitere Veränderungen würde das bedeuten, dass man aus dem gesamten lokalen Netz drucken, die Warteschlangen bearbeiten oder andere Dinge    erledigen kann, die mit der blossen Benutzung der Drucker zu tun haben. Der Zugriff auf die Verwaltungsseiten ist dagegen nur vom lokalen Rechner aus möglich, (Allow @local) um an der Konfiguration des Servers etwas zu verändern, muss man sich sogar authentifizieren und Mitglied der SystemGroup (lpadmin) sein, die durch @SYSTEM repräsentiert wird.
+
+
+Dies wollen wir nun folgendermassen anpassen und ändern die nächsten beiden
+Konfigurationseinträge:
+
+      # Restrict access to the admin pages...
+      <Location /admin>
+        Order allow,deny
+        Allow @Local
+        Require user @SYSTEM
+      </Location>
+
+      # Restrict access to configuration files...
+      <Location /admin/conf>
+        AuthType Default
+        Require user @SYSTEM
+        Order allow,deny
+        Allow @Local
+      </Location>
+
+Hiermit sind die Änderungen an der Konfigurationsdatei abgeschlossen und wir müssen Cups neustarten.
+
+      sudo /etc/init.d/cups restart
+
+Versuche dich dann im Browser des Hosts per IP-Adresse auf CUPS zuzugreifen.
+
+      https://172.16.17.100:631
+
+Danach musst du dich anmelden mit dem Benutzernamen des Benutzers den du vorher erstellt hast und ebenfalls mit dem Passwort, welches du vorher ausgesucht hast.
+
 
 
 
