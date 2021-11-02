@@ -62,17 +62,31 @@ Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werksta
    - CUPS-client
 
 
-   hängigkeiten, Funktionalitaet)
-
-
 
 ## 2.5. Installationsanleitung
 
-   - Anweisungen verständlich und nachvollziehbar
+Mit dieser Anleitung sollte dir die Installation der Print-Servers leichter fallen und die einzelnen Schritte, bzw. Commands werden dir erklärt.
 
-   - Keine fertigen Lösungsschritte aufzeigen
+Zuerst öffnen wir DHCPD damit mir unserem Raspberry Pi die statische IP-Adresse vergeben können.
 
-   - Hilfestellung (Tipps, Quellen...)
+          sudo nano /etc/dhcpcd.conf
+
+Danach vergeben wir auch die statische IP-Adresse. Hierfür ersetzen wir die vorgegebene IP-Adresse mit unserer Wunsch-IP-Adresse. In den TBZ Schulzimmern sind die IP-Adressen von 172.16.17.10 bis 172.16.17.127 vom DHCP-Server ausgenommen. Da kann beispielsweise die IP-Adresse 172.16.17.100/24 nehmen. Jetzt müssen wir dafür die folgenden Zeilen abändern. Diese sind imt # auskommentiert.
+
+      interface eth0
+      ip_address=172.16.17.100/24
+      static routers=172.16.17.1
+
+Jetzt updaten kurz den Raspberry Pi
+      
+      sudo apt-get update && sudo apt-get upgrade
+
+CUPS müssen wir auch installieren. CUPS steht für Common Unix Printing System und ist ein weit verbreitetes Drucksystem auf Linux-Systemen.Darüber lassen sich verschiedene Drucker nutzen, verwalten und freigeben. CUPS hat eine Weboberfläche und vereinfacht die Übersicht für den Benutzer.
+
+      sudo apt install cups cups-client
+
+Dazu müssen wir noch die Druckertreiber installieren
+
 
 
 
