@@ -231,7 +231,15 @@ Um weitere Probleme zu umgehen, musst du noch eine Firewall-Regel erstellen, wel
 
 "BILD 24"
 
+Anschliessend müssen Sie in der Systemsteuerung einen Drucker hinzufügen. Der Druckername ist im Register "Drucker" aufgelistet: z.B. "HP_LaserJet_P2055dn_pci". Der Freigabename, um einen Netzwerkdrucker (d.h. via PrintServer) hat folgenden Aufbau:
 
+      http://<IP-Adresse>:631/printers/Druckername
+
+"BILD 25"
+"BILD 26"
+"BILD 27"
+
+Ein weiterer Klick auf “Weiter” und der Drucker wird eingerichtet. Möglicherweise muss noch der Treiber angegeben werden. Danach sollte Windows den Drucker erfolgreich finden.
 
 
 
@@ -248,7 +256,12 @@ Um weitere Probleme zu umgehen, musst du noch eine Firewall-Regel erstellen, wel
 
 ## 2.8. Quellen
 
-Benutzte Anleitung: https://sbcguides.com/install-webmin-on-raspberry-pi/
+Benutzte Anleitung: 
+      https://sbcguides.com/install-webmin-on-raspberry-pi/
+      https://www.gehaxelt.in/blog/raspberrypi-netzwerkdrucker-mit-cups/
+      https://www.elektronik-kompendium.de/sites/raspberry-pi/2007081.hammer
+      
+
 
 
 
