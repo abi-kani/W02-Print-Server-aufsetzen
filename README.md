@@ -211,12 +211,11 @@ Danach musst du dich anmelden mit dem Benutzernamen des Benutzers den du vorher 
 Der nächste Schritt, welcher jetzt folgen wird, ist die Konfiguration der Benutzeroberfläche von CUPS. 
 Dafür musst du, wie im letzten Schritt, dich auf dem Browser bei CUPS einlogen. Auf dem oberen Balken hast du verschiedene Auswahlmöglichkeiten wie Home, Verwaltung, Klassen etc. Für uns ist im Moment die Verwaltung von Bedeutung, das heisst du kannst das schon einmal auswählen.
 
-![Webinterface](/img/16-verwaltung.jpg)
+<img src="img/16-verwaltung.jpg" alt="Webinterface" width="400px">
 
 Jetzt kannst du noch den Haken bei "Drucken aus dem Internet zulassen" setzen, sonst funktioniert unser Server später nicht. Die Applikation wird automatisch neu gestartet. Möglicherweise musst du dich neu ins Webinterface einloggen.
 
-![Webinterface](img\17-drucker-aus-internet-akzeptieren.JPG)
-
+<img src="img/17-drucker-aus-internet-akzeptieren.JPG" alt="Webinterface" width="350px">
 
 
 ### 4.3. Drucker einrichten
