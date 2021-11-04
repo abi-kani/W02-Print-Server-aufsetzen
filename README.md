@@ -19,6 +19,8 @@
   - [2.5. Installationsanleitung](#25-installationsanleitung)
     - [Benutzer zuweisen](#benutzer-zuweisen)
     - [CUPS konfigurieren](#cups-konfigurieren)
+    - [Drucker einrichten](#drucker-einrichten)
+    - [Konfiguration für dein Notepad: Windows Client](#konfiguration-für-dein-notepad-windows-client)
   - [2.6. Qualitätskontrolle (Pruefen der Funktionalität mit Ablauf von Kommandos und entsprechenden Outputs)](#26-qualitätskontrolle-pruefen-der-funktionalität-mit-ablauf-von-kommandos-und-entsprechenden-outputs)
   - [2.7. Error-Handling](#27-error-handling)
   - [2.8. Quellen](#28-quellen)
@@ -183,6 +185,54 @@ Versuche dich dann im Browser des Hosts per IP-Adresse auf CUPS zuzugreifen.
       https://172.16.17.100:631
 
 Danach musst du dich anmelden mit dem Benutzernamen des Benutzers den du vorher erstellt hast und ebenfalls mit dem Passwort, welches du vorher ausgesucht hast.
+
+Der nächste Schritt, welcher jetzt folgen wird, ist die Konfiguration der Benutzeroberfläche von CUPS. 
+Dafür musst du, wie im letzten Schritt, dich auf dem Browser bei CUPS einlogen. Auf dem oberen Balken hast du verschiedene Auswahlmöglichkeiten wie Home, Verwaltung, Klassen etc. Für uns ist im Moment die Verwaltung von Bedeutung, das heisst du kannst das schon einmal auswählen.
+
+"BILD 16"
+
+Nach Verwaltung musst du noch "Konfigurationsdatei bearbeiten" auswählen damit du die Konfiguration nochmals überprüfen kannst. 
+
+Danach müssen wir noch die letzten Anpassungen vornehmen, damit wir extern auf den Drucker zugreifen können. 
+
+"BILD 17"
+
+Wenn du die Häckchen wie im obigen Bild gesetzt hast, kannst du auf "Einstellungen ändern" klicken, damit die Einstellungen gespeichert werden. Danach kannst CUPS neustarten:
+
+    sudo /etc/init.d/cups/ restart
+
+### Drucker einrichten
+
+Jetzt können wir den Drucker hinzufügen. Dafür müssen wir den Drucker via USB an den RasPi anschliessen und den anschalten. Nun kannst du unter Verwaltung den lokalen Drucker hinzufügen. Gib einen sinnvollen Namen für den Ort ein. Zusätzlich muss die Option “Freigabe” bzw. “Shared” angewählt werden, da sonst der Drucker später nicht im Netzwerk auffindbar sein wird.
+
+"BILD 18"
+"BILD 19"
+"BILD 20"
+
+
+CUPS schlägt dann einen geeigneten Druckertreiber vor. Erfahrungsgemäss funktionieren die PCL-Treiber besser als die CUPS-Treiber. 
+
+"BILD 21"
+
+Mit „Drucker hinzufügen“ und anschliessender "Standardeinstellung festlegen" ist die Konfiguration beim Raspberry Pi beendet. Du kannst nun unter "Drucker" -> "Wartung" eine Testseite ausdrucken lassen. 
+
+"BILD 22"
+
+
+### Konfiguration für dein Notepad: Windows Client
+
+Damit du über CUPS-Printserver drucken kannst, muss der Internetdruckclient und der LPR-Anschlussmonitor installiert sein. Folge den nächsten Schritten:
+
+Systemsteuerung -> Programme -> Programme und Features -> Windows-Features aktivieren oder deaktivieren -> Druck- und Dokumentendienste -> Internetdruckclient, hier muss ein Häkchen gesetzt werden. 
+
+"BILD 23"
+
+Um weitere Probleme zu umgehen, musst du noch eine Firewall-Regel erstellen, welche den Port UDP 631 öffnet.
+
+"BILD 24"
+
+
+
 
 
 
