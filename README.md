@@ -1,55 +1,52 @@
-# 1. W02-Print-Server-aufsetzen 
-# 2. Werkstattauftrag W02 Print-Server
+# W02-Print-Server-aufsetzen <!-- omit in toc -->
 
 
 
 
-## 2.1. Inhaltsverzeichnis:
+## Inhaltsverzeichnis:<!-- omit in toc -->
 
 
-- [1. W02-Print-Server-aufsetzen](#1-w02-print-server-aufsetzen)
-- [2. Werkstattauftrag W02 Print-Server](#2-werkstattauftrag-w02-print-server)
-  - [2.1. Inhaltsverzeichnis:](#21-inhaltsverzeichnis)
-  - [2.2. Autoren & Version](#22-autoren--version)
-  - [2.3. Einführung](#23-einführung)
-    - [2.3.1. Beschreibung](#231-beschreibung)
-  - [2.4. Benötigte Hard- und Software](#24-benötigte-hard--und-software)
-    - [Hardware](#hardware)
-    - [Software](#software)
-  - [2.5. Installationsanleitung](#25-installationsanleitung)
-    - [Benutzer zuweisen](#benutzer-zuweisen)
-    - [CUPS konfigurieren](#cups-konfigurieren)
-    - [Drucker einrichten](#drucker-einrichten)
-    - [Konfiguration für dein Notepad: Windows Client](#konfiguration-für-dein-notepad-windows-client)
-  - [2.6. Qualitätskontrolle (Pruefen der Funktionalität mit Ablauf von Kommandos und entsprechenden Outputs)](#26-qualitätskontrolle-pruefen-der-funktionalität-mit-ablauf-von-kommandos-und-entsprechenden-outputs)
-  - [2.7. Error-Handling](#27-error-handling)
-  - [2.8. Quellen](#28-quellen)
-    - [2.8.1. OpenSource Lizenz](#281-opensource-lizenz)
+- [1. Autoren & Version](#1-autoren--version)
+- [2. Einführung](#2-einführung)
+  - [2.1. Beschreibung](#21-beschreibung)
+- [3. Benötigte Hard- und Software](#3-benötigte-hard--und-software)
+  - [3.1. Hardware](#31-hardware)
+  - [3.2. Software](#32-software)
+- [4. Installationsanleitung](#4-installationsanleitung)
+  - [4.1. Benutzer zuweisen](#41-benutzer-zuweisen)
+  - [4.2. CUPS konfigurieren](#42-cups-konfigurieren)
+  - [4.3. Drucker einrichten](#43-drucker-einrichten)
+  - [4.4. Windows-Systemsteuerung anpassen](#44-windows-systemsteuerung-anpassen)
+  - [4.5. Windows Port öffnen](#45-windows-port-öffnen)
+  - [4.6. Drucker bei Windows hinzufügen](#46-drucker-bei-windows-hinzufügen)
+- [5. Qualitätskontrolle](#5-qualitätskontrolle)
+- [6. Error-Handling](#6-error-handling)
+- [7. Quellen](#7-quellen)
+  - [7.1. OpenSource Lizenz](#71-opensource-lizenz)
 
 
-## 2.2. Autoren & Version
+## 1. Autoren & Version
 
 Autoren: Lian Baumann & Abishanth Kanagaratnam <br>
 
-Version: 1.3 <br>
+Version: 1.4 <br>
 
 Link: https://github.com/lian-baumann/M306-Services
 
-## 2.3. Einführung
+## 2. Einführung
 
-### 2.3.1. Beschreibung
+### 2.1. Beschreibung
 
 Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werkstattauftrag. Dazu führen wir den Auftrag von A-Z durch und dokumentieren unsere Resultate in diesem Github repo in einer didaktisch reduzierten Form.
 
-   - Vorgesehener Zeitaufwand für die Realisierung
-
-   - Stolpersteine
-
+Für die reine Realisierung (ohne Planung etc.) stehen uns 8 Lektionen zur Verfügung.
+Stolpersteien könnten für uns irgendwelche Netzwerkprobleme, wie z.B. Firewall o.ä. werden. Auch könnte es natürlich sein, dass es Probleme mit dem Drucker gibt oder der Verbindung vom Drucker zum Netzwerk.
 
 
-## 2.4. Benötigte Hard- und Software
 
-### Hardware
+## 3. Benötigte Hard- und Software
+
+### 3.1. Hardware
  - Raspberry Pi
  - SD-Karte mit Image
  - Monitor
@@ -60,32 +57,43 @@ Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werksta
  - LAN-Kabel
  - Print-Server
 
-### Software
+### 3.2. Software
    - Raspberry OS
    - CUPS (Druckserver-Software)
    - CUPS-client
+   - Drucker-Treiber
 
 
 
-## 2.5. Installationsanleitung
+## 4. Installationsanleitung
 
 Mit dieser Anleitung sollte dir die Installation der Print-Servers leichter fallen und die einzelnen Schritte, bzw. Commands werden dir erklärt.
 
-Zuerst öffnen wir DHCPD damit mir unserem Raspberry Pi die statische IP-Adresse vergeben können.
+Zuerst öffnen wir die DHCPD-Konfigurationsdatei damit mir unserem Raspberry Pi die statische IP-Adresse vergeben können.
 
-          sudo nano /etc/dhcpcd.conf
+      sudo nano /etc/dhcpcd.conf
 
-Danach vergeben wir auch die statische IP-Adresse. Hierfür ersetzen wir die vorgegebene IP-Adresse mit unserer Wunsch-IP-Adresse. In den TBZ Schulzimmern sind die IP-Adressen von 172.16.17.10 bis 172.16.17.127 vom DHCP-Server ausgenommen. Da kann beispielsweise die IP-Adresse 172.16.17.100/24 nehmen. Jetzt müssen wir dafür die folgenden Zeilen abändern. Diese sind imt # auskommentiert.
+Danach vergeben wir die statische IP-Adresse. Hierfür ersetzen wir die vorgegebene IP-Adresse mit unserer Wunsch-IP-Adresse. In den TBZ Schulzimmern sind die IP-Adressen von 172.16.17.10 bis 172.16.17.127 vom DHCP-Server ausgenommen. Da kann beispielsweise die IP-Adresse 172.16.17.100/24 nehmen. Jetzt müssen wir dafür die folgenden Zeilen abändern. Diese sind mit # auskommentiert.
+
 
       interface eth0
       ip_address=172.16.17.100/24
       static routers=172.16.17.1
 
-Jetzt updaten kurz den Raspberry Pi
-      
-      sudo apt-get update && sudo apt-get upgrade
+**Frage:** Könntest du dir vorstellen, was der Unterschied zwischen dem Interface eth0 und wlan0 ist?
 
-CUPS müssen wir auch installieren. CUPS steht für Common Unix Printing System und ist ein weit verbreitetes Drucksystem auf Linux-Systemen.Darüber lassen sich verschiedene Drucker nutzen, verwalten und freigeben. CUPS hat eine Weboberfläche und vereinfacht die Übersicht für den Benutzer.
+<p style="font-size:8pt;">Lösung:<br>
+    Das Interface eth0 kommt bei einer Internetverbindung per Kabel zum Zuge, wlan0 bei einer kabellosen WLAN-Verbindung. Man kann auch beides definieren und dann hat man je nach Verbindungsmethode eine andere statische IP.</p>
+
+Jetzt updaten wir unseren Raspberry Pi. Dies kann auch lange dauern, also empfiehlt es sich das Update z.B. während einer Pause zu machen.
+
+**Aufgabe:** Suche im Internet nach dem Befehl, der dein System updated.
+
+<p style="font-size:8pt;">Lösung:<br>
+sudo apt-get update && sudo apt-get upgrade</p><br>
+
+CUPS müssen wir auch installieren. CUPS steht für Common Unix Printing System und ist ein weit verbreitetes Drucksystem auf Linux-Systemen. Darüber lassen sich verschiedene Drucker nutzen, verwalten und freigeben. CUPS hat eine Weboberfläche und vereinfacht die Übersicht für den Benutzer.
+
 
       sudo apt install cups cups-client
 
@@ -100,13 +108,18 @@ Dazu müssen wir noch die Druckertreiber installieren.
 - printer-driver-hpijs (wird für hplib benötigt)
 - printer-driver-gutenprint (enthält viele Treiber für sonstige Farb-Tintendrucker)
 
-Jetzt können wir CUPS auch schon starten.
+Jetzt können wir CUPS auch schon starten falls das noch nicht der Fall ist.
 
-      sudo /etc/init.d/cups start
+**Aufgabe:** Suche im Internet nach dem Befehl, der den Status von CUPS abfragt. Falls es noch nicht gestartet ist, kannst du das mit einem weiteren Befehl tun. TIPP: Diese beiden Befehle unterscheiden sich nur in einem Wort.
 
-### Benutzer zuweisen
+<p style="font-size:8pt;">Lösung:<br>
+sudo /etc/init.d/cups status <br>
+sudo /etc/init.d/cups start</p><br>
 
-Falls du einen Benutzer für die Druckerkonfiguration berechtigen möchtest, dann muss er Teil der Gruppe lpadmin sein.
+
+### 4.1. Benutzer zuweisen
+
+Nun kannst du einen Benutzer zum konfigurieren des Druckservers berechtigen. Beispielsweise kannst du gleich den Benutzer "pi" dazu verwenden.
 
       sudo usermod -aG lpadmin pi
 
@@ -127,14 +140,14 @@ Jetzt müssen wir überprüfen ob "Drucker" in der Gruppe ist.
 
 Falls dies der Fall ist, dann haben wir es so weit geschafft. Die Konfiguration von CUPS ist der nächste Schritt.
 
-### CUPS konfigurieren
+### 4.2. CUPS konfigurieren
 
-Die Konfigurationsdatei muss noch bearbeitet werden. Auf diese zugreifen könner wir mit:
+Die Konfigurationsdatei muss noch bearbeitet werden. Auf diese zugreifen können wir mit:
 
       sudo nano /etc/cups/cupsd.conf
 
 Da der Print-Server auch ohne grafische Oberfläche verfügbar sein soll, lassen wir ihn auf allen Netzwerkschnittstellen lauschen. Dafür müssen die "Listen"-Einträge abgeändert werden. 
-Wir entfernen (oder auskommentieren mit #) die Zeile „Listen ...“ nach:
+Wir entfernen (oder auskommentieren mit #) die Zeile „Listen localhost:631“.
 
       # Only listen for connections from the local machine.
       # Listen localhost:631
@@ -155,11 +168,10 @@ Das WebInterface sollte auf “Yes” gestellt sein und die Location-Einträge f
         Allow @local
       </Location>
 
-Ohne weitere Veränderungen würde das bedeuten, dass man aus dem gesamten lokalen Netz drucken, die Warteschlangen bearbeiten oder andere Dinge    erledigen kann, die mit der blossen Benutzung der Drucker zu tun haben. Der Zugriff auf die Verwaltungsseiten ist dagegen nur vom lokalen Rechner aus möglich, (Allow @local) um an der Konfiguration des Servers etwas zu verändern, muss man sich sogar authentifizieren und Mitglied der SystemGroup (lpadmin) sein, die durch @SYSTEM repräsentiert wird.
 
 
-Dies wollen wir nun folgendermassen anpassen und ändern die nächsten beiden
-Konfigurationseinträge:
+
+Zusätzlich müssen wir noch definieren, wer Zugriff auf den Server bekommen soll. Hier kann man entweder alle Einträge so einfüllen wie unten, dann kann nur der vorher definierte Druckuser sich in die Konfiguration einloggen. Wenn du aber möchtest, dass sich jeder auf das Webinterface einloggen kann, dann entferne jeweils die Zeile "Require user @SYSTEM" (das ist aber unsicher.)
 
       # Restrict access to the admin pages...
       <Location /admin>
@@ -176,97 +188,111 @@ Konfigurationseinträge:
         Allow @Local
       </Location>
 
-Hiermit sind die Änderungen an der Konfigurationsdatei abgeschlossen und wir müssen Cups neustarten.
+Wir sind fertig mit dem Anpassen der Konfigurationsdatei und müssen Cups noch neustarten.
 
-      sudo /etc/init.d/cups restart
+**Aufgabe:** Nun sollst du Cups neustarten. Finde den Befehl dazu. TIPP: Möglicherweise hast du einen ähnlichen Befehl bereits verwendet!
+
+<p style="font-size:8pt;">Lösung:<br>
+sudo /etc/init.d/cups restart</p><br>
+
 
 Versuche dich dann im Browser des Hosts per IP-Adresse auf CUPS zuzugreifen.
 
       https://172.16.17.100:631
+
+**Frage:** Kannst du auf das Webinterface auch mit dem Hostnamen des Raspberry pi's zugreifen? Falls ja, wie würde der Link dann aussehen?
+
+<p style="font-size:8pt;">Lösung:<br>
+Beispiel: https://raspberrypi:631</p><br>
+
 
 Danach musst du dich anmelden mit dem Benutzernamen des Benutzers den du vorher erstellt hast und ebenfalls mit dem Passwort, welches du vorher ausgesucht hast.
 
 Der nächste Schritt, welcher jetzt folgen wird, ist die Konfiguration der Benutzeroberfläche von CUPS. 
 Dafür musst du, wie im letzten Schritt, dich auf dem Browser bei CUPS einlogen. Auf dem oberen Balken hast du verschiedene Auswahlmöglichkeiten wie Home, Verwaltung, Klassen etc. Für uns ist im Moment die Verwaltung von Bedeutung, das heisst du kannst das schon einmal auswählen.
 
-"BILD 16"
+![Webinterface](/img/16-verwaltung.jpg)
 
-Nach Verwaltung musst du noch "Konfigurationsdatei bearbeiten" auswählen damit du die Konfiguration nochmals überprüfen kannst. 
+Jetzt kannst du noch den Haken bei "Drucken aus dem Internet zulassen" setzen, sonst funktioniert unser Server später nicht. Die Applikation wird automatisch neu gestartet. Möglicherweise musst du dich neu ins Webinterface einloggen.
 
-Danach müssen wir noch die letzten Anpassungen vornehmen, damit wir extern auf den Drucker zugreifen können. 
+![Webinterface](img\17-drucker-aus-internet-akzeptieren.JPG)
 
-"BILD 17"
 
-Wenn du die Häckchen wie im obigen Bild gesetzt hast, kannst du auf "Einstellungen ändern" klicken, damit die Einstellungen gespeichert werden. Danach kannst CUPS neustarten:
 
-    sudo /etc/init.d/cups/ restart
+### 4.3. Drucker einrichten
 
-### Drucker einrichten
+Jetzt können wir den Drucker hinzufügen. Dafür müssen wir den Drucker via USB an den RasPi anschliessen und den Drucker anschalten. Nun kannst du unter Verwaltung den lokalen Drucker hinzufügen. 
 
-Jetzt können wir den Drucker hinzufügen. Dafür müssen wir den Drucker via USB an den RasPi anschliessen und den anschalten. Nun kannst du unter Verwaltung den lokalen Drucker hinzufügen. Gib einen sinnvollen Namen für den Ort ein. Zusätzlich muss die Option “Freigabe” bzw. “Shared” angewählt werden, da sonst der Drucker später nicht im Netzwerk auffindbar sein wird.
+<img src="img\18-erstmals-drucker-an-netzwerk-anschliessen-und-ip-herausfinden.JPG" alt="Webinterface" width="350px">
 
-"BILD 18"
-"BILD 19"
-"BILD 20"
+Wähle in der Liste den Drucker, der per USB verbunden ist.
 
+Gib einen sinnvollen Namen für den Ort ein. Zusätzlich muss die Option “Freigabe” bzw. “Shared” angewählt werden, da sonst der Drucker später nicht im Netzwerk auffindbar sein wird.
+
+<img src="img\20-drucker-hinzufuegen.JPG" alt="Webinterface" width="450px">
+
+<br><br>
 
 CUPS schlägt dann einen geeigneten Druckertreiber vor. Erfahrungsgemäss funktionieren die PCL-Treiber besser als die CUPS-Treiber. 
 
-"BILD 21"
+<img src="img\21-drucker-treiber-auswaehlen-dabei-muss-ausprobiert-werden-pcl-oft-gut.JPG" alt="Webinterface" width="450px">
+<br><br>
 
-Mit „Drucker hinzufügen“ und anschliessender "Standardeinstellung festlegen" ist die Konfiguration beim Raspberry Pi beendet. Du kannst nun unter "Drucker" -> "Wartung" eine Testseite ausdrucken lassen. 
-
-"BILD 22"
+Jetzt nur noch bestätigen und dann "Standardtreiber festlegen" und schon haben wir den Drucker fertig eingerichtet.
 
 
-### Konfiguration für dein Notepad: Windows Client
+**Aufgabe:** Drucke auf der Übersichtsseite des Druckers eine Testseite aus. Wenn das funktioniert, dann hast du alles richtig gemacht.<br><br>
 
-Damit du über CUPS-Printserver drucken kannst, muss der Internetdruckclient und der LPR-Anschlussmonitor installiert sein. Folge den nächsten Schritten:
+### 4.4. Windows-Systemsteuerung anpassen
 
-Systemsteuerung -> Programme -> Programme und Features -> Windows-Features aktivieren oder deaktivieren -> Druck- und Dokumentendienste -> Internetdruckclient, hier muss ein Häkchen gesetzt werden. 
+Wir müssen in der Windows-Systemsteuerung eine kleine Änderung machen. Dazu öffnen wir die Systemsteuerung > Programme > Programme und Features > Windows-Features aktivieren oder deaktivieren > Druck- und Dokumentendienste
+Wir setzen ein Häkchen bei Internetdruckdienst und LPR-Anschlussmonitor setzen.
 
-"BILD 23"
+<img src="img\23-systemsteuerung-programme-programmeundfeatures-windowsfeaturesaktivierenundeaktivieren-druckunddokumentendienste-internetdruckclient.JPG" alt="Webinterface" width="350px">
+<br><br>
 
-Um weitere Probleme zu umgehen, musst du noch eine Firewall-Regel erstellen, welche den Port UDP 631 öffnet.
+### 4.5. Windows Port öffnen
+**Aufgabe:** Öffne in der Windows-Firewall den Port 631 mit einer Regel, um Probleme zu vermeiden.<br>
 
-"BILD 24"
 
-Anschliessend müssen Sie in der Systemsteuerung einen Drucker hinzufügen. Der Druckername ist im Register "Drucker" aufgelistet: z.B. "HP_LaserJet_P2055dn_pci". Der Freigabename, um einen Netzwerkdrucker (d.h. via PrintServer) hat folgenden Aufbau:
+### 4.6. Drucker bei Windows hinzufügen
+Anschliessend fügen wir einen neuen Drucker hinzu. Dazu drücken wir die Windows-Taste und suchen nach "Drucker und Scanner."
+
+<img src="img\25-drucker-und-scanner-oeffne.JPG" width="250px"><br>
+
+Im Drucker-Menu fügen wir einen neuen Drucker hinzu. Wahrscheinlich wird unser Drucker aber nicht gefunden, weshalb wir auf "der gewünschte Drucker ist nicht aufgelistet" drücken.
+
+Nun kommt folgendes Fenster, bei dem wir den zweiten Eintrag auswählen und dort folgende Zeile einfügen (Das Eingefügte entspricht eigentlich dem Link vom Webinterface, wenn man sich im Menu des gewählten Druckers befindet, aber ohne SSL):
 
       http://<IP-Adresse>:631/printers/Druckername
 
-"BILD 25"
-"BILD 26"
-"BILD 27"
-
-Ein weiterer Klick auf “Weiter” und der Drucker wird eingerichtet. Möglicherweise muss noch der Treiber angegeben werden. Danach sollte Windows den Drucker erfolgreich finden.
+<img src="img\tr2-drucker-eingeben-nach-format.JPG" width="450px">
 
 
 
+Klick auf “Weiter” und der Drucker wird eingerichtet. Möglicherweise muss noch der Treiber angegeben werden (falls nicht vorhanden, installieren!). Danach sollte Windows den Drucker erfolgreich finden und man kann eine Testseite (z.B. Word) ausdrucken.
+
+
+## 5. Qualitätskontrolle
 
 
 
-## 2.6. Qualitätskontrolle (Pruefen der Funktionalität mit Ablauf von Kommandos und entsprechenden Outputs)
+## 6. Error-Handling 
 
 
 
-## 2.7. Error-Handling 
+## 7. Quellen
 
+Benutzte Anleitungen: 
 
-
-## 2.8. Quellen
-
-Benutzte Anleitung: 
-      https://sbcguides.com/install-webmin-on-raspberry-pi/
-      https://www.gehaxelt.in/blog/raspberrypi-netzwerkdrucker-mit-cups/
-      https://www.elektronik-kompendium.de/sites/raspberry-pi/2007081.hammer
-      
-
-
-
+- PDF-Anleitung zu Printserver vom Modul 126 (erhältlich auf Anfrage bei Herrn Calisto)
+- https://sbcguides.com/install-webmin-on-raspberry-pi/
+- https://www.gehaxelt.in/blog/raspberrypi-netzwerkdrucker-mit-cups/
+- https://www.elektronik-kompendium.de/sites/raspberry-pi/2007081.hammer
+      <br><br>
 
 ---
 
-### 2.8.1. OpenSource Lizenz
+### 7.1. OpenSource Lizenz
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz</a>.
