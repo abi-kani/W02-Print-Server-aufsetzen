@@ -82,15 +82,15 @@ Danach vergeben wir die statische IP-Adresse. Hierfür ersetzen wir die vorgegeb
 
 **Frage:** Könntest du dir vorstellen, was der Unterschied zwischen dem Interface eth0 und wlan0 ist?
 
-<p style="font-size:8pt;">Lösung:<br>
-    Das Interface eth0 kommt bei einer Internetverbindung per Kabel zum Zuge, wlan0 bei einer kabellosen WLAN-Verbindung. Man kann auch beides definieren und dann hat man je nach Verbindungsmethode eine andere statische IP.</p>
+<i><p style="font-size:8pt;">Lösung:<br>
+    Das Interface eth0 kommt bei einer Internetverbindung per Kabel zum Zuge, wlan0 bei einer kabellosen WLAN-Verbindung. Man kann auch beides definieren und dann hat man je nach Verbindungsmethode eine andere statische IP.</p></i>
 
 Jetzt updaten wir unseren Raspberry Pi. Dies kann auch lange dauern, also empfiehlt es sich das Update z.B. während einer Pause zu machen.
 
 **Aufgabe:** Suche im Internet nach dem Befehl, der dein System updated.
 
-<p style="font-size:8pt;">Lösung:<br>
-sudo apt-get update && sudo apt-get upgrade</p><br>
+<i><p style="font-size:8pt;">Lösung:<br>
+sudo apt-get update && sudo apt-get upgrade</p><br></i>
 
 CUPS müssen wir auch installieren. CUPS steht für Common Unix Printing System und ist ein weit verbreitetes Drucksystem auf Linux-Systemen. Darüber lassen sich verschiedene Drucker nutzen, verwalten und freigeben. CUPS hat eine Weboberfläche und vereinfacht die Übersicht für den Benutzer.
 
@@ -112,9 +112,9 @@ Jetzt können wir CUPS auch schon starten falls das noch nicht der Fall ist.
 
 **Aufgabe:** Suche im Internet nach dem Befehl, der den Status von CUPS abfragt. Falls es noch nicht gestartet ist, kannst du das mit einem weiteren Befehl tun. TIPP: Diese beiden Befehle unterscheiden sich nur in einem Wort.
 
-<p style="font-size:8pt;">Lösung:<br>
+<i><p style="font-size:8pt;">Lösung:<br>
 sudo /etc/init.d/cups status <br>
-sudo /etc/init.d/cups start</p><br>
+sudo /etc/init.d/cups start</p><br></i>
 
 
 ### 4.1. Benutzer zuweisen
@@ -192,8 +192,8 @@ Wir sind fertig mit dem Anpassen der Konfigurationsdatei und müssen Cups noch n
 
 **Aufgabe:** Nun sollst du Cups neustarten. Finde den Befehl dazu. TIPP: Möglicherweise hast du einen ähnlichen Befehl bereits verwendet!
 
-<p style="font-size:8pt;">Lösung:<br>
-sudo /etc/init.d/cups restart</p><br>
+<i><p style="font-size:8pt;">Lösung:<br>
+sudo /etc/init.d/cups restart</p><br></i>
 
 
 Versuche dich dann im Browser des Hosts per IP-Adresse auf CUPS zuzugreifen.
@@ -202,8 +202,8 @@ Versuche dich dann im Browser des Hosts per IP-Adresse auf CUPS zuzugreifen.
 
 **Frage:** Kannst du auf das Webinterface auch mit dem Hostnamen des Raspberry pi's zugreifen? Falls ja, wie würde der Link dann aussehen?
 
-<p style="font-size:8pt;">Lösung:<br>
-Beispiel: https://raspberrypi:631</p><br>
+<i><p style="font-size:8pt;">Lösung:<br>
+Beispiel: https://raspberrypi:631</p><br></i>
 
 
 Danach musst du dich anmelden mit dem Benutzernamen des Benutzers den du vorher erstellt hast und ebenfalls mit dem Passwort, welches du vorher ausgesucht hast.
