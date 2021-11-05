@@ -21,6 +21,16 @@
   - [4.6. Drucker bei Windows hinzufügen](#46-drucker-bei-windows-hinzufügen)
 - [5. Qualitätskontrolle](#5-qualitätskontrolle)
 - [6. Troubleshooting](#6-troubleshooting)
+  - [6.1. Was genau hat nicht funktioniert](#61-was-genau-hat-nicht-funktioniert)
+  - [6.2. Firewall](#62-firewall)
+  - [6.3. Verschiedene Drucker](#63-verschiedene-drucker)
+  - [6.4. Verschiedene Netzwerke](#64-verschiedene-netzwerke)
+  - [6.5. Komplettes System neuinstalliert](#65-komplettes-system-neuinstalliert)
+  - [6.6. Per USB-Kabel und Netzwerk](#66-per-usb-kabel-und-netzwerk)
+  - [6.7. Verschiedene Treiber](#67-verschiedene-treiber)
+  - [6.8. Verschiedene Konstallationen vom Link](#68-verschiedene-konstallationen-vom-link)
+  - [6.9. Alle oben gelisteten Funktionen](#69-alle-oben-gelisteten-funktionen)
+  - [6.10. Vieles weiteres](#610-vieles-weiteres)
 - [7. Quellen](#7-quellen)
   - [7.1. OpenSource Lizenz](#71-opensource-lizenz)
 
@@ -275,12 +285,53 @@ Klick auf “Weiter” und der Drucker wird eingerichtet. Möglicherweise muss n
 ## 5. Qualitätskontrolle
 Als Qualitätskontrolle dient grundsätzlich der erfolgreiche Druckvorgang von einem Client. Bei uns lief leider nicht alles so ganz nach Plan, weshalb wir nur teilweise der Qualitätskontrolle entsprechen.
 
-Aus dem Webinterface von CUPS konnten wir immer erfolgreich die Testseite ausdrucken. Als wir aber die 
+Aus dem Webinterface von CUPS konnten wir immer erfolgreich die Testseite ausdrucken. Als wir aber den Drucker auf dem Client hinzufügten kam bei uns immer eine Fehlermeldung (mehr dazu im Troubleshooting.)
 
 
 ## 6. Troubleshooting 
+Leider funktionierte bei uns nicht alles zu 100%, weshalb wir hier ein Troubleshooting formulieren. Erstmals kurz vorweg: **Die obige Anleitung müsste theoretisch funktionieren (basierend auf verschiedenen Anleitungen), jedoch waren wir beim letzen Schritt erfolglos.** Es empfiehlt sich deshalb, vielleicht noch eine zweite Anleitung zuhilfe zu nehmen und diese beiden miteinander abzugleichen.
+
+### 6.1. Was genau hat nicht funktioniert
+Bei uns funktionierte alles problemlos, ausser der letzte Punkt unserer Anleitung, und zwar das Verbinden des Druckers auf unserem Windows-Client. Wir fügten den Link (entsprechend mehrerer Anleitungen) richtig ein, jedoch kam immer eine Fehlermeldung.
+<img src="img\Screenshot (1).png" width="500px"><br>
+
+### 6.2. Firewall
+Unser erster Schritt im Troubleshooting war ein Problem, das in der IT oft Probleme macht. Nämlich die Firewall. Wir setzten für den Port 631 eine Regel, die den Port öffnet und der Http port ist sowieso schon offen.
+
+### 6.3. Verschiedene Drucker
+Wir haben die Verbindung mit drei verschiedenen Druckern getestet, und bei allen drei funktionierte der Druck nur per Webinterface. Wir konnten also ausschliessen, dass das Problem bei einem Drucker liegt.
+
+### 6.4. Verschiedene Netzwerke
+Wir haben die Konfiguration in zwei verschiedenen Netzwerken eingerichtet, nämlich im Schulwlan und beim bei unserem Heim-WLAN: Gleiches Resultat. Also konnten wir auch irgend eine Firewall im Netzwerk oder etwas ähnliches ausschliessen. Auch zeigte das, dass wir keinen Fehler in der IP-Konfiguration haben.
+
+### 6.5. Komplettes System neuinstalliert
+Zuerst haben wir nur das Konfig-File wieder auf Standard gesetzt. Dann entschieden wir uns aber dazu, den Raspberry Pi komplett auf das Standard-image zurückzusetzen und den ganzen Pi neu aufzusetzen - alles erfolglos.
+
+### 6.6. Per USB-Kabel und Netzwerk
+Wir haben den Drucker mal per Netzwerk mit dem Server verbunden. Als das nicht funktionierte, wählten wir in der TBZ die USB-Verbindung, welche in vielen Anleitungen empfohlen wurde. Diese half aber ebenso nicht.
+
+### 6.7. Verschiedene Treiber
+Wir haben zu den verschiedenen Druckern (übrigens alle von HP) auch immer die aktuellen Treiber auf dem Server ausgewählt und lokal auf dem Windows-Client installiert. Kein Erfolg.
+
+### 6.8. Verschiedene Konstallationen vom Link
+Wir haben wirklich alle möglichen Konstallationen des Links versucht, ob wir nicht einfach da einen Fehler haben könnten, aber das half auch nicht:
+
+Wir versuchten:
+- Hostname statt IP-Adresse
+- IP-Adresse ohne Port angeben
+- HTTPS statt HTTP
+- Ohne die /printers/ Ergänzung
+- Alle möglichen Druckernamen
+- ...
 
 
+<img src="img\tr2-drucker-eingeben-nach-format.JPG" width="400px">
+
+### 6.9. Alle oben gelisteten Funktionen
+Wir haben natürlich nicht nur die Verbindungsfunktion "Freigegebenen Drucker über den Namen auswählen" probiert, sondern auch alle andern. Diese führten meist zu keinem Resultat, oder zu einem nicht ansprechbaren Drucker, der auch nicht mit dem CUPS-Server kommunizierte.
+
+### 6.10. Vieles weiteres
+Natürlich haben wir noch viele weitere Dinge probiert, die wir jetzt hier nicht aufgelistet haben. Aber wir hoffen, wir konnten unser Troubleshooting verständlich erklären.
 
 ## 7. Quellen
 
