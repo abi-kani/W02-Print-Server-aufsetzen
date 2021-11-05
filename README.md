@@ -41,7 +41,7 @@ Autoren: Lian Baumann & Abishanth Kanagaratnam <br>
 
 Version: 1.4 <br>
 
-Link: https://github.com/lian-baumann/M306-Services
+Link: https://github.com/abi-kani/W02-Print-Server-aufsetzen
 
 ## 2. Einführung
 
@@ -50,7 +50,7 @@ Link: https://github.com/lian-baumann/M306-Services
 Wir erstellen für zweit-jahr-Lernende, welche das Modul 126 haben einen Werkstattauftrag. Dazu führen wir den Auftrag von A-Z durch und dokumentieren unsere Resultate in diesem Github repo in einer didaktisch reduzierten Form.
 
 Für die reine Realisierung (ohne Planung etc.) stehen uns 8 Lektionen zur Verfügung.
-Stolpersteien könnten für uns irgendwelche Netzwerkprobleme, wie z.B. Firewall o.ä. werden. Auch könnte es natürlich sein, dass es Probleme mit dem Drucker gibt oder der Verbindung vom Drucker zum Netzwerk.
+Stolpersteine könnten für uns irgendwelche Netzwerkprobleme, wie z.B. Firewall o.ä. werden. Auch könnte es natürlich sein, dass es Probleme mit dem Drucker gibt oder der Verbindung vom Drucker zum Netzwerk.
 
 
 
@@ -79,7 +79,7 @@ Stolpersteien könnten für uns irgendwelche Netzwerkprobleme, wie z.B. Firewall
 
 Mit dieser Anleitung sollte dir die Installation der Print-Servers leichter fallen und die einzelnen Schritte, bzw. Commands werden dir erklärt.
 
-Zuerst öffnen wir die DHCPD-Konfigurationsdatei damit mir unserem Raspberry Pi die statische IP-Adresse vergeben können.
+Zuerst öffnen wir die DHCPCD-Konfigurationsdatei damit mir unserem Raspberry Pi die statische IP-Adresse vergeben können.
 
       sudo nano /etc/dhcpcd.conf
 
@@ -90,10 +90,14 @@ Danach vergeben wir die statische IP-Adresse. Hierfür ersetzen wir die vorgegeb
       ip_address=172.16.17.100/24
       static routers=172.16.17.1
 
+---
+
 <i>**Frage:**</i> Könntest du dir vorstellen, was der Unterschied zwischen dem Interface eth0 und wlan0 ist?
 
 <i><p style="font-size:8pt;">Lösung:<br>
     Das Interface eth0 kommt bei einer Internetverbindung per Kabel zum Zuge, wlan0 bei einer kabellosen WLAN-Verbindung. Man kann auch beides definieren und dann hat man je nach Verbindungsmethode eine andere statische IP.</p></i>
+
+---
 
 Jetzt updaten wir unseren Raspberry Pi. Dies kann auch lange dauern, also empfiehlt es sich das Update z.B. während einer Pause zu machen.
 
