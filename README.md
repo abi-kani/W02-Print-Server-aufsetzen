@@ -133,7 +133,7 @@ Jetzt können wir CUPS auch schon starten falls das noch nicht der Fall ist.
 
 <i><p style="font-size:8pt;">Lösung:<br>
 sudo /etc/init.d/cups status <br>
-sudo /etc/init.d/cups start</p><br></i>
+sudo /etc/init.d/cups start</p></i>
 
 ---
 
@@ -214,7 +214,7 @@ Wir sind fertig mit dem Anpassen der Konfigurationsdatei und müssen Cups noch n
 <i>**Aufgabe:**</i> Nun sollst du Cups neustarten. Finde den Befehl dazu. TIPP: Möglicherweise hast du einen ähnlichen Befehl bereits verwendet!
 
 <i><p style="font-size:8pt;">Lösung:<br>
-sudo /etc/init.d/cups restart</p><br></i>
+sudo /etc/init.d/cups restart</p></i>
 
 ---
 
@@ -226,7 +226,7 @@ Versuche dich dann im Browser des Hosts per IP-Adresse auf CUPS zuzugreifen.
 <i>**Frage:**</i> Kannst du auf das Webinterface auch mit dem Hostnamen des Raspberry pi's zugreifen? Falls ja, wie würde der Link dann aussehen?
 
 <i><p style="font-size:8pt;">Lösung:<br>
-Beispiel: https://raspberrypi:631</p><br></i>
+Beispiel: https://raspberrypi:631</p></i>
 
 ---
 
@@ -311,6 +311,7 @@ Leider funktionierte bei uns nicht alles zu 100%, weshalb wir hier ein Troublesh
 
 ### 6.1. Was genau hat nicht funktioniert
 Bei uns funktionierte alles problemlos, ausser der letzte Punkt unserer Anleitung, und zwar das Verbinden des Druckers auf unserem Windows-Client. Wir fügten den Link (entsprechend mehrerer Anleitungen) richtig ein, jedoch kam immer eine Fehlermeldung.
+
 <img src="img\Screenshot (1).png" width="500px"><br>
 
 ### 6.2. Firewall
