@@ -20,7 +20,7 @@
   - [4.5. Windows Port öffnen](#45-windows-port-öffnen)
   - [4.6. Drucker bei Windows hinzufügen](#46-drucker-bei-windows-hinzufügen)
 - [5. Qualitätskontrolle](#5-qualitätskontrolle)
-- [6. Error-Handling](#6-error-handling)
+- [6. Troubleshooting](#6-troubleshooting)
 - [7. Quellen](#7-quellen)
   - [7.1. OpenSource Lizenz](#71-opensource-lizenz)
 
@@ -273,10 +273,12 @@ Klick auf “Weiter” und der Drucker wird eingerichtet. Möglicherweise muss n
 
 
 ## 5. Qualitätskontrolle
+Als Qualitätskontrolle dient grundsätzlich der erfolgreiche Druckvorgang von einem Client. Bei uns lief leider nicht alles so ganz nach Plan, weshalb wir nur teilweise der Qualitätskontrolle entsprechen.
+
+Aus dem Webinterface von CUPS konnten wir immer erfolgreich die Testseite ausdrucken. Als wir aber die 
 
 
-
-## 6. Error-Handling 
+## 6. Troubleshooting 
 
 
 
