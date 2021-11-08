@@ -17,7 +17,7 @@
   - [4.2. CUPS konfigurieren](#42-cups-konfigurieren)
   - [4.3. Drucker einrichten](#43-drucker-einrichten)
   - [4.4. Windows-Systemsteuerung anpassen](#44-windows-systemsteuerung-anpassen)
-- [### 4.5. Windows Port öffnen](#-45-windows-port-öffnen)
+  - [4.5. Windows Port öffnen](#45-windows-port-öffnen)
   - [4.6. Drucker bei Windows hinzufügen](#46-drucker-bei-windows-hinzufügen)
 - [5. Qualitätskontrolle](#5-qualitätskontrolle)
 - [6. Troubleshooting](#6-troubleshooting)
@@ -277,6 +277,7 @@ Wir setzen ein Häkchen bei Internetdruckdienst und LPR-Anschlussmonitor setzen.
 <br><br>
 
 ### 4.5. Windows Port öffnen
+
 ---
 <i>**Aufgabe:**</i> Öffne in der Windows-Firewall den Port 631 mit einer Regel, um Probleme zu vermeiden.
 
